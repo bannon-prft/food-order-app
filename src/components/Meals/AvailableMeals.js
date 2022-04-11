@@ -6,12 +6,19 @@ import styles from './AvailableMeals.module.css'
 
 const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState()
 
   useEffect(() => {
-    const url =
-      'https://react-complete-guide-8e169-default-rtdb.firebaseio.com/meals.json'
     const fetchMeals = async () => {
-      const res = await fetch(url)
+      const res = await fetch(
+        'https://react-complete-guide-8e169-default-rtdb.firebaseio.com/meals.json'
+      )
+
+      if (!res.ok) {
+        throw new Error('Something went wrong!')
+      }
+
       const data = await res.json()
 
       const loadedMeals = []
@@ -25,24 +32,44 @@ const AvailableMeals = (props) => {
         })
       }
       setMeals(loadedMeals)
+      setIsLoading(false)
     }
 
-    fetchMeals()
+    fetchMeals().catch((err) => {
+      setIsLoading(false)
+      setError(err.message)
+    })
   }, [])
+
+  if (isLoading) {
+    return (
+      <section className={styles.mealsLoading}>
+        <p>Loading...</p>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className={styles.mealsError}>
+        <p>{error}</p>
+      </section>
+    )
+  }
+
+  const mealsList = meals.map((meal) => (
+    <MealItem
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ))
 
   return (
     <Card className={styles.meals}>
-      <ul>
-        {meals.map((meal) => (
-          <MealItem
-            key={meal.id}
-            id={meal.id}
-            name={meal.name}
-            description={meal.description}
-            price={meal.price}
-          />
-        ))}
-      </ul>
+      <ul>{mealsList}</ul>
     </Card>
   )
 }

@@ -43,4 +43,9 @@ This project is a practice project from [React - The Complete Guide (incl Hooks,
 - Manually added meals dummy data to the firebase realtime database
 - in AvailableMeals component, fetch the data from firebase
 - use useEffect with a custom async function inside of it to be able to await the data
-  - then set the state for the meals 
+  - then set the state for the meals
+- added logic/jsx for loading data
+- moved cumbersome meals list out of JSX into a constant
+- added error handling, that displays error instead of JSX
+- moved the call to fetchMeals into a try/catch block
+  - actually chain `.catch()` to the end of the function call so that don't have to wrap that function in another async call
