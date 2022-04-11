@@ -33,3 +33,14 @@ This project is a practice project from [React - The Complete Guide (incl Hooks,
   - Changing the `<p></p>` tags to `<div></div>` seemed to do the trick
 - Added Meals.js as recommended by instructor
   - This really just causes one less import in App.js
+
+## Adding Checkout / Order Form
+
+## Submit Orders to Backend Server (Http)
+
+## Fetch Meals Data
+
+- Manually added meals dummy data to the firebase realtime database
+- in AvailableMeals component, fetch the data from firebase
+- use useEffect with a custom async function inside of it to be able to await the data
+  - then set the state for the meals 
