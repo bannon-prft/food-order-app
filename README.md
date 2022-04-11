@@ -46,6 +46,12 @@ This project is a practice project from [React - The Complete Guide (incl Hooks,
 
 ## Submit Orders to Backend Server (Http)
 
+- send the checkout form data back to the cart
+- should always validate incoming data on the server as well, because the JS on the client can be edited and validation bypassed
+- send order to firebase passing the submitOrderHandler to the Checkout component
+- show different JSX depending on submission state
+- clear cart when order is submitted, by adding a new action to the CartProvider
+
 ## Fetch Meals Data
 
 - Manually added meals dummy data to the firebase realtime database

@@ -21,10 +21,15 @@ const Checkout = (props) => {
   const confirmHandler = (event) => {
     event.preventDefault()
 
-    const enteredNameIsValid = !isEmpty(nameInputRef.current.value)
-    const enteredStreetIsValid = !isEmpty(streetInputRef.current.value)
-    const enteredPostalIsValid = !isNotFiveChars(postalInputRef.current.value)
-    const enteredCityIsValid = !isEmpty(cityInputRef.current.value)
+    const enteredName = nameInputRef.current.value
+    const enteredStreet = streetInputRef.current.value
+    const enteredPostal = postalInputRef.current.value
+    const enteredCity = cityInputRef.current.value
+
+    const enteredNameIsValid = !isEmpty(enteredName)
+    const enteredStreetIsValid = !isEmpty(enteredStreet)
+    const enteredPostalIsValid = !isNotFiveChars(enteredPostal)
+    const enteredCityIsValid = !isEmpty(enteredCity)
 
     setFormInputValidity({
       name: enteredNameIsValid,
@@ -43,9 +48,12 @@ const Checkout = (props) => {
       return
     }
 
-    if (formIsValid) {
-      // submit the cart data
-    }
+    props.onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      postal: enteredPostal,
+      city: enteredCity,
+    })
   }
 
   const nameClasses = `${styles.control} ${
