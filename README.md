@@ -36,6 +36,14 @@ This project is a practice project from [React - The Complete Guide (incl Hooks,
 
 ## Adding Checkout / Order Form
 
+- clicking order button expands modal with form for user information
+- has confirm and cancel buttons
+  - cancel closes modal
+  - confirm orders food
+- validate user input
+  - show errors on invalid input
+  - submit to server on valid submission
+
 ## Submit Orders to Backend Server (Http)
 
 ## Fetch Meals Data
